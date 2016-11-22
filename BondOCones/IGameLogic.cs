@@ -21,7 +21,7 @@ namespace BondOCones
 
         int SelectGameDirection();
 
-        void moveGamePiece(int Piece, int Direction, int numberOfMoves);
+        void moveGamePiece(int Piece, int x, int y, int Direction, int numberOfMoves);
 
 
         bool checkWin();

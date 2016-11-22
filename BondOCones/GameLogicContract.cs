@@ -56,18 +56,78 @@ namespace BondOCones
 
         public int SelectGamePiece()
         {
+            Contract.Ensures(SelectGamePiece() < 26 && SelectGamePiece() >= 0); // it is a valid number of picces
             throw new NotImplementedException();
         }
 
         public int SelectGameDirection()
         {
+            Contract.Ensures(SelectGameDirection() >= 0 && SelectGameDirection() >= 3);
             throw new NotImplementedException();
         }
-        public void moveGamePiece(int Piece, int Direction, int numberOfMoves)
+        public void moveGamePiece(int Piece, int x, int y, int Direction, int numberOfMoves)
         {
-
+            Contract.Requires(x >= 0 && x <= 10);
+            Contract.Requires(y>= 0 && y <= 12);
+            
+           // Contract.Ensures( CanMove(Piece, x, y, Direction, numberOfMoves) == true);
             throw new NotImplementedException();
         }
+
+        bool CanMove(int Piece, int x, int y, int Direction, int numberOfMoves)
+        {
+            switch (Direction)
+            {
+                case 0: //up
+                    if (y + SelectGameDirection() >= 0 && y + SelectGameDirection() < 12)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
+
+                case 1: // Down
+                    if (y - SelectGameDirection() >= 0 && y - SelectGameDirection() < 12)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
+
+                case 2: //left
+                    if (x - SelectGameDirection() >= 0 && x - SelectGameDirection() < 10)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
+
+                case 3: //Right
+                    if (x + SelectGameDirection() >= 0 && x + SelectGameDirection() < 10)
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
+
+                default:
+                    return false;
+            }
+
+        }
+
 
         public bool checkWin()
         {
